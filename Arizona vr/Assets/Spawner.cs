@@ -9,11 +9,12 @@ public class Spawner : MonoBehaviour
     public int waveCount;
     public GameObject target;
     bool b = false;
+    bool start = false;
     int count;
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(StartGame());
     }
 
     // Update is called once per frame
@@ -21,13 +22,17 @@ public class Spawner : MonoBehaviour
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
         int spawned = targets.Length;
-        Debug.Log($"spawned is {spawned}");
-        if (spawned == 0 && count < waveCount)
+        if (spawned == 0 && count < waveCount && start)
             b = false;
         else
             b = true;
         if (b == false)
             StartCoroutine(StartSpawning());
+    }
+
+    IEnumerator StartGame() {
+        yield return new WaitForSeconds(5);
+        start = true;
     }
 
     IEnumerator StartSpawning()

@@ -25,11 +25,11 @@ public class Fire : MonoBehaviour
 
     public void FireBullet(ActivateEventArgs arg)
     {
-        Instantiate(Bullet, SpawnPoint.position, Quaternion.identity);
-        Rigidbody rb = Bullet.GetComponent<Rigidbody>();
+        GameObject obj = Instantiate(Bullet, SpawnPoint.position, Quaternion.identity);
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
         Vector3 velocity = new Vector3(BulletSpeed, BulletSpeed, BulletSpeed);
         rb.velocity = velocity;
         //Bullet.velocity = BulletSpeed;
-        Destroy(Bullet, 3);
+        Destroy(obj, 3);
     }
 }
